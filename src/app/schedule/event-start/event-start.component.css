@@ -1,0 +1,11 @@
+.ui-inputgroup .ui-inputgroup-addon {
+  min-width: 2.5em;
+}
+
+.date-field {
+  width: 100%;
+}
+
+.ui-inputgroup .ui-inputtext:not(:last-child) {
+  border-right: 1px solid;
+}

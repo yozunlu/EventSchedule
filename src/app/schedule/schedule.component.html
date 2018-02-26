@@ -1,0 +1,10 @@
+<p-schedule [events]="events"
+            [header]="header"
+            [eventLimit]="4"
+            [editable]="true"
+            (onDayClick)="showDialog()"
+></p-schedule>
+
+<p-dialog header="create new event" [(visible)]="display" [(modal)]="modal">
+  <app-event-start></app-event-start>
+</p-dialog>

@@ -1,0 +1,66 @@
+<p-header>
+</p-header>
+<form [formGroup]="eventForm" (ngSubmit)="onSubmit()">
+<div class="ui-g ui-fluid">
+  <div class="ui-g-12 ui-md-4">
+    <div class="ui-inputgroup">
+      <span class="ui-inputgroup-addon"><i class="fa fa-arrow-circle-right"></i></span>
+      <input type="text"
+             pInputText
+             placeholder="event name"
+             id="title"
+             formControlName="title">
+    </div>
+  </div>
+</div>
+<div class="ui-g ui-fluid">
+  <div class="ui-g-12 ui-md-4">
+    <div class="ui-inputgroup">
+      <p-listbox [options]="types"
+                 id="type"
+                 formControlName="type"></p-listbox>
+    </div>
+  </div>
+</div>
+<div class="ui-g ui-fluid">
+ <div class="ui-g-12 ui-md-4">
+  <div class="ui-inputgroup">
+    <span class="ui-inputgroup-addon">$</span>
+    <input type="text"
+           pInputText
+           placeholder="Price"
+           id="price"
+           formControlName="price">
+    <span class="ui-inputgroup-addon">.00</span>
+  </div>
+ </div>
+</div>
+<div class="ui-g ui-fluid">
+  <div class="ui-g-12 ui-md-4 date-field">
+    <div class="">
+      <p-calendar dateFormat="yy.mm.dd"
+                  placeholder="start"
+                  id="start"
+                  formControlName="start"></p-calendar>
+    </div>
+  </div>
+</div>
+<div class="ui-g ui-fluid">
+  <div class="ui-g-12 ui-md-4 date-field">
+    <div class="">
+      <p-calendar dateFormat="yy.mm.dd"
+                  placeholder="end" id="end"
+                  formControlName="end"></p-calendar>
+    </div>
+  </div>
+</div>
+<p-footer>
+  <div class="ui-g ui-fluid">
+    <div class="ui-g-12 ui-md-4 date-field">
+      <div class="">
+        <p-button label="Save" type="submit" [disabled]="!eventForm.valid"></p-button>
+      </div>
+    </div>
+  </div>
+</p-footer>
+</form>
