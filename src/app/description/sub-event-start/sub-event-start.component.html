@@ -1,0 +1,80 @@
+<!--
+*ngIf="subEventForm"
+[disabled]="!eventForm.valid"
+-->
+<form [formGroup]="subEventForm" (ngSubmit)="onSubmit()">
+  <div class="ui-g ui-fluid">
+    <div class="ui-g-12 ui-md-4">
+      <div class="ui-inputgroup">
+        <span class="ui-inputgroup-addon"><i class="fa fa-arrow-circle-right"></i></span>
+        <input type="text"
+               pInputText
+               placeholder="event title"
+               id="name"
+               formControlName="name"
+               >
+      </div>
+    </div>
+  </div>
+<div class="ui-g ui-fluid">
+  <div class="ui-g-12 ui-md-4">
+    <div class="ui-inputgroup">
+      <p-listbox [options]="types"
+                 id="type"
+                 formControlName="type"
+                 ></p-listbox>
+    </div>
+  </div>
+</div>
+<div class="ui-g ui-fluid">
+ <div class="ui-g-12 ui-md-4">
+  <div class="ui-inputgroup">
+    <span class="ui-inputgroup-addon">$</span>
+    <input type="text"
+           pInputText
+           placeholder="Price"
+           id="price"
+           formControlName="price"
+           >
+    <span class="ui-inputgroup-addon">.00</span>
+  </div>
+ </div>
+</div>
+  <div class="ui-g ui-fluid">
+    <div class="ui-g-12 date-field">
+      <label>
+        start:
+        <input class="input"
+               [owlDateTimeTrigger]="dt"
+               [owlDateTime]="dt"
+               id="start"
+               formControlName="start">
+        <owl-date-time [pickerMode]="dialog" #dt></owl-date-time>
+      </label>
+    </div>
+  </div>
+  <div class="ui-g ui-fluid">
+    <div class="ui-g-12 date-field">
+      <div class="">
+        <label>
+          end:
+          <input class="input"
+                 [owlDateTimeTrigger]="dt1"
+                 [owlDateTime]="dt1"
+                 id="end"
+                 formControlName="end">
+          <owl-date-time [pickerMode]="dialog" #dt1></owl-date-time>
+        </label>
+      </div>
+    </div>
+  </div>
+  <p-footer>
+    <div class="ui-g ui-fluid">
+      <div class="ui-g-12 ui-md-4 date-field">
+        <div class="">
+          <p-button label="Save" type="submit" [disabled]="!subEventForm.valid"></p-button>
+        </div>
+      </div>
+    </div>
+  </p-footer>
+</form>

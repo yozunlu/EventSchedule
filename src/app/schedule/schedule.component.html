@@ -5,6 +5,6 @@
             (onDayClick)="showDialog()"
 ></p-schedule>
 
-<p-dialog header="create new event" [(visible)]="display" [(modal)]="modal">
+<p-dialog  header="create new travel" *ngIf="display" [(visible)]="display" [(modal)]="modal">
   <app-event-start></app-event-start>
 </p-dialog>

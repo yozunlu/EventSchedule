@@ -1,0 +1,28 @@
+<div class="card" *ngFor="let event of events; let i = index">
+  <header class="card-header">
+    <p class="card-header-title">
+      {{event.title}}  ({{event.start}} to {{event.end}})
+    </p>
+  </header>
+  <div class="card-content">
+    <div class="content">
+      <p-button label="add event" icon="fa fa-plus" iconPos="left" (onClick)="onAddSubEvent(event)"></p-button>
+      <p-dialog header="create new event" [(visible)]="display == event.id"  [(modal)]="modal">
+        <app-sub-event-start [(id)]="event.id"></app-sub-event-start>
+      </p-dialog>
+      <div class="subEventContainer" *ngFor="let sevent of subEvents">
+        <ng-container *ngIf="event.id === sevent.id">
+        {{sevent.name}} -- {{sevent.start}} to {{sevent.end}} -- {{sevent.type.name}} => {{sevent.price}}
+        </ng-container>
+      </div>
+    </div>
+  </div>
+  <footer class="card-footer">
+
+  </footer>
+</div>
+<!--
+<p-dialog header="create new event" [(visible)]="display" [(modal)]="modal">
+  <app-sub-event-start></app-sub-event-start>
+</p-dialog>
+-->

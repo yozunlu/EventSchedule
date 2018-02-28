@@ -17,6 +17,10 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {ListboxModule} from 'primeng/listbox';
 import {ButtonModule} from 'primeng/button';
 import {ReactiveFormsModule} from '@angular/forms';
+import { DescriptionComponent } from './description/description.component';
+import {SubEventService} from './description/sub-event.service';
+import { SubEventStartComponent } from './description/sub-event-start/sub-event-start.component';
+import {OwlDateTimeModule, OwlNativeDateTimeModule} from 'ng-pick-datetime';
 
 
 
@@ -25,7 +29,9 @@ import {ReactiveFormsModule} from '@angular/forms';
   declarations: [
     AppComponent,
     ScheduleComponent,
-    EventStartComponent
+    EventStartComponent,
+    DescriptionComponent,
+    SubEventStartComponent
   ],
   imports: [
     BrowserModule,
@@ -35,9 +41,11 @@ import {ReactiveFormsModule} from '@angular/forms';
     ListboxModule,
     CalendarModule,
     ButtonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    OwlDateTimeModule,
+    OwlNativeDateTimeModule,
   ],
-  providers: [EventService],
+  providers: [EventService, SubEventService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

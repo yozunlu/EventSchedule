@@ -2,6 +2,8 @@ import {Component, DoCheck, OnInit} from '@angular/core';
 import { OnDestroy } from '@angular/core';
 import {EventService} from './event.service';
 
+import * as _ from 'lodash';
+
 @Component({
   selector: 'app-schedule',
   templateUrl: './schedule.component.html',
@@ -37,7 +39,7 @@ export class ScheduleComponent implements OnInit, OnDestroy {
     this.eventService.eventsChanged.subscribe(
       (data: any[]) => {
         this.events = data;
-        console.log(data);
+        // console.log(data);
       }
     );
   }

@@ -1,8 +1,11 @@
-import {Component, OnInit, } from '@angular/core';
+import {Component, Input, OnInit,} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 
 import {SelectItem} from 'primeng/api';
 import {EventService} from '../event.service';
+
+import * as _ from 'lodash';
+
 
 @Component({
   selector: 'app-event-start',
@@ -11,37 +14,44 @@ import {EventService} from '../event.service';
 })
 export class EventStartComponent implements OnInit {
 
-
+  eventsLastItem;
+  lastid;
   types: SelectItem[];
   eventForm: FormGroup;
 
-  constructor(private eventService: EventService) {
-
-    this.types = [
-      {label: 'Accommodation', value: {id: 1, name: 'Accommodation', code: 'AC'}},
-      {label: 'Fun', value: {id: 2, name: 'Fun', code: 'FU'}},
-      {label: 'Food', value: {id: 3, name: 'Food', code: 'FO'}},
-      {label: 'Transportation', value: {id: 4, name: 'Transportation', code: 'TR'}},
-    ];
-  }
+  constructor(private eventService: EventService) {}
 
   ngOnInit() {
+
+    // !! It needs to follow ids
+    this.eventsLastItem = _.last(this.eventService.getEvents());
+    this.lastid = this.eventsLastItem.id;
+    // this.eventService.eventsChanged.subscribe((data: any[]) => {
+    //  this.eventsLastItem = _.last(data);
+    // });
+
     this.initForm();
   }
+
   onSubmit() {
-    // console.log(this.eventForm);
+    console.log(this.eventForm.value);
+
     this.eventService.addEvent(this.eventForm.value);
     this.eventService.modalOpen.next(false);
     this.eventForm.reset();
   }
 
   private initForm() {
+
+    this.lastid = this.lastid + 1;
+
+    console.log(this.lastid);
+
     this.eventForm = new FormGroup({
+      'id': new FormControl(this.lastid, Validators.required),
       'title': new FormControl(null, Validators.required),
       'start': new FormControl(null, Validators.required),
       'end':  new FormControl(null, Validators.required),
-      'price':  new FormControl(null, [Validators.required, Validators.pattern(/^[1-9]+[0-9]*$/)]),
-      'type': new FormControl(null, Validators.required)
     });
   }
 
