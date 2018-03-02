@@ -2,8 +2,6 @@ import {Component, Input, OnInit} from '@angular/core';
 import {EventService} from '../../schedule/event.service';
 import {SubEventService} from '../sub-event.service';
 
-import * as _ from 'lodash';
-
 @Component({
   selector: 'app-price',
   templateUrl: './price.component.html',
@@ -15,13 +13,21 @@ export class PriceComponent implements OnInit {
   subEvents;
   totalPrice;
   accommodationTotal;
-  findedSubEvents;
+  funTotal;
+  foodTotal;
+  transportationTotal;
 
   constructor(private eventService: EventService, private subEventService: SubEventService) { }
 
   ngOnInit() {
     this.subEvents = this.subEventService.getSubEvents();
     this.calcTotalPrice();
+
+    this.subEventService.subEventsChanged.subscribe(
+      (data: any[]) => {
+        this.subEvents = data;
+        this.calcTotalPrice();
+      });
   }
 
   calcTotalPrice () {
@@ -30,6 +36,18 @@ export class PriceComponent implements OnInit {
     console.log(this.totalPrice);
 
     this.accommodationTotal = this.subEvents.filter(f => f.type.name === 'Accommodation' && f.id === this.id)
+      .map(obj => obj.price)
+      .reduce((prev, ccurrent) => ccurrent + prev, 0);
+
+    this.funTotal = this.subEvents.filter(f => f.type.name === 'Fun' && f.id === this.id)
+      .map(obj => obj.price)
+      .reduce((prev, ccurrent) => ccurrent + prev, 0);
+
+    this.foodTotal = this.subEvents.filter(f => f.type.name === 'Food' && f.id === this.id)
+      .map(obj => obj.price)
+      .reduce((prev, ccurrent) => ccurrent + prev, 0);
+
+    this.transportationTotal = this.subEvents.filter(f => f.type.name === 'Transportation' && f.id === this.id)
       .map(obj => obj.price)
       .reduce((prev, ccurrent) => ccurrent + prev, 0);
 
