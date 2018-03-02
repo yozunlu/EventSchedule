@@ -1,4 +1,4 @@
-import {Component, Input, OnInit,} from '@angular/core';
+import {Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 
 import {SelectItem} from 'primeng/api';
@@ -24,11 +24,16 @@ export class EventStartComponent implements OnInit {
   ngOnInit() {
 
     // !! It needs to follow ids
-    this.eventsLastItem = _.last(this.eventService.getEvents());
-    this.lastid = this.eventsLastItem.id;
-    // this.eventService.eventsChanged.subscribe((data: any[]) => {
-    //  this.eventsLastItem = _.last(data);
-    // });
+      this.eventsLastItem = _.last(this.eventService.getEvents());
+      if (this.eventsLastItem === undefined || null) {
+        this.lastid = 0;
+      } else {
+        this.lastid = this.eventsLastItem.id;
+    }
+
+    this.eventService.eventsChanged.subscribe((data: any[]) => {
+      this.eventsLastItem = _.last(data);
+     });
 
     this.initForm();
   }

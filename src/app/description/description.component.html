@@ -7,7 +7,7 @@
   <div class="card-content">
     <div class="content">
       <p-button label="add event" icon="fa fa-plus" iconPos="left" (onClick)="onAddSubEvent(event)"></p-button>
-      <p-dialog header="create new event" *ngIf="display" [(visible)]="display == event.id"  [(modal)]="modal">
+      <p-dialog header="create new event" *ngIf="display" [(visible)]="event.id == display"  [(modal)]="modal">
         <app-sub-event-start [(id)]="event.id"></app-sub-event-start>
       </p-dialog>
       <div class="subEventContainer" *ngFor="let sevent of subEvents">

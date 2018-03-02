@@ -20,9 +20,9 @@ import {ReactiveFormsModule} from '@angular/forms';
 import { DescriptionComponent } from './description/description.component';
 import {SubEventService} from './description/sub-event.service';
 import { SubEventStartComponent } from './description/sub-event-start/sub-event-start.component';
-import {OwlDateTimeModule, OwlNativeDateTimeModule} from 'ng-pick-datetime';
 import {PriceComponent} from './description/price/price.component';
 
+import {OwlDateTimeModule, OwlNativeDateTimeModule} from 'ng-pick-datetime';
 
 
 
@@ -34,7 +34,7 @@ import {PriceComponent} from './description/price/price.component';
     EventStartComponent,
     DescriptionComponent,
     SubEventStartComponent,
-    PriceComponent
+    PriceComponent,
   ],
   imports: [
     BrowserModule,

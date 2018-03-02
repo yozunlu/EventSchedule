@@ -5,38 +5,21 @@ import {Subject} from 'rxjs/Subject';
 export class SubEventService {
 
   public subEventsChanged = new Subject();
-    subEvents = [
-      {
-        'id': 1,
-        'name': 'Deneme',
-        'start': '2018-02-07, 8.25pm',
-        'end': '2018-02-07, 9.00pm',
-        'type': {name: 'Accommodation'},
-        'price': 100
-      },
-      {
-        'id': 1,
-        'name': 'Deneme33',
-        'start': '2018-02-07, 8.25pm',
-        'end': '2018-02-07, 9.00pm',
-        'type': {name: 'Fun'},
-        'price': 200
-      },
-      {
-        'id': 2,
-        'name': 'Deneme2',
-        'start': '2018-03-08, 8.25pm',
-        'end': '2018-03-010, 9.00pm',
-        'type': { name: 'Accommodation'},
-        'price': 150
-      }
 
-    ];
+  subEvents = this.getSubEvents();
+
     getSubEvents () {
-      return this.subEvents.slice();
+      let localStorageItem = JSON.parse(localStorage.getItem('subEvents'));
+      return localStorageItem === null || undefined ? [] : localStorageItem.subEvents;
     }
+
     addSubEvent (subEvent) {
       this.subEvents.push(subEvent);
+      this.setLocalStorageEvents(this.subEvents);
       this.subEventsChanged.next(this.subEvents.slice());
     }
+
+  private setLocalStorageEvents (subEvents) {
+    localStorage.setItem('subEvents', JSON.stringify({ subEvents: subEvents }));
+  }
 }

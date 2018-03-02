@@ -9,27 +9,25 @@ export class EventService {
 
   constructor() {}
 
-  events = [
-    {
-      'id': 1,
-      'title': 'All Day Travel',
-      'start': '2018-01-01'
-    },
-    {
-      'id': 2,
-      'title': 'Long Travel',
-      'start': '2018-02-07',
-      'end': '2018-02-10',
-    }
-  ];
+  events = this.getEvents();
+
+  /*setEvents (events) {
+    this.events = events;
+    this.eventsChanged.next(this.events.slice());
+  }*/
 
   getEvents () {
-    return this.events.slice();
-    // return this.eventsChanged.next(this.events.slice());
+    let localStorageItem = JSON.parse(localStorage.getItem('events'));
+    return localStorageItem === null || undefined ? [] : localStorageItem.events;
 
   }
   addEvent(event) {
     this.events.push(event);
+    this.setLocalStorageEvents(this.events);
     this.eventsChanged.next(this.events.slice());
+  }
+
+  private setLocalStorageEvents (events) {
+    localStorage.setItem('events', JSON.stringify({ events: events }));
   }
 }
