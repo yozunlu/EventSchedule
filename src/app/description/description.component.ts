@@ -34,7 +34,6 @@ export class DescriptionComponent implements OnInit {
     this.eventService.eventsChanged.subscribe(
       (data: any[]) => {
         this.events = data;
-        console.log(data);
       }
     );
 
@@ -46,7 +45,6 @@ export class DescriptionComponent implements OnInit {
   }
 
   onAddSubEvent(event) {
-      console.log(event);
       this.display = event.id;
   }
 

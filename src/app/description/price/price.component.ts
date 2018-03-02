@@ -33,7 +33,6 @@ export class PriceComponent implements OnInit {
   calcTotalPrice () {
 
     this.totalPrice = this.subEvents.filter(f => f.id === this.id).map(obj => obj.price).reduce((prev, ccurrent) => ccurrent + prev, 0);
-    console.log(this.totalPrice);
 
     this.accommodationTotal = this.subEvents.filter(f => f.type.name === 'Accommodation' && f.id === this.id)
       .map(obj => obj.price)

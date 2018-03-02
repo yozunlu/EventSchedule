@@ -1,7 +1,6 @@
 import {Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 
-import {SelectItem} from 'primeng/api';
 import {EventService} from '../event.service';
 
 import * as _ from 'lodash';
@@ -16,7 +15,6 @@ export class EventStartComponent implements OnInit {
 
   eventsLastItem;
   lastid;
-  types: SelectItem[];
   eventForm: FormGroup;
 
   constructor(private eventService: EventService) {}
@@ -39,7 +37,6 @@ export class EventStartComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.eventForm.value);
 
     this.eventService.addEvent(this.eventForm.value);
     this.eventService.modalOpen.next(false);
@@ -49,8 +46,6 @@ export class EventStartComponent implements OnInit {
   private initForm() {
 
     this.lastid = this.lastid + 1;
-
-    console.log(this.lastid);
 
     this.eventForm = new FormGroup({
       'id': new FormControl(this.lastid, Validators.required),

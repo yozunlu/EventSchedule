@@ -39,7 +39,6 @@ export class ScheduleComponent implements OnInit, OnDestroy {
     this.eventService.eventsChanged.subscribe(
       (data: any[]) => {
         this.events = data;
-        // console.log(data);
       }
     );
   }

@@ -11,11 +11,6 @@ export class EventService {
 
   events = this.getEvents();
 
-  /*setEvents (events) {
-    this.events = events;
-    this.eventsChanged.next(this.events.slice());
-  }*/
-
   getEvents () {
     let localStorageItem = JSON.parse(localStorage.getItem('events'));
     return localStorageItem === null || undefined ? [] : localStorageItem.events;

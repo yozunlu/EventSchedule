@@ -27,15 +27,11 @@ export class SubEventStartComponent implements OnInit {
 
   ngOnInit() {
 
-    // this.events = this.eventService.getEvent();
-    // this.id = this.eventService.getEvent(this.subEvent);
     this.initForm();
   }
 
   onSubmit() {
 
-    // console.log(this.id);
-    // console.log(this.subEventForm.value);
     this.subEventService.addSubEvent(this.subEventForm.value);
     this.eventService.modalOpen.next(false);
     this.subEventForm.reset();
