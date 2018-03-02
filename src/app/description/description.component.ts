@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import {EventService} from '../schedule/event.service';
 import {SubEventService} from './sub-event.service';
 
+
 @Component({
   selector: 'app-description',
   templateUrl: './description.component.html',
@@ -41,6 +42,7 @@ export class DescriptionComponent implements OnInit {
       (data: any[]) => {
       this.subEvents = data;
     });
+
   }
 
   onAddSubEvent(event) {
